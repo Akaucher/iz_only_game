@@ -1,5 +1,7 @@
 package jade;
 
+import components.FontRenderer;
+import components.SpriteRenderer;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 import renderer.Shader;
@@ -15,29 +17,6 @@ import static org.lwjgl.opengl.GL30C.glGenVertexArrays;
 
 public class LevelEditorScene extends Scene{
 
-//    private String vertexShaderSrc = "#version 330 core\n" +
-//            "\n" +
-//            "layout (location=0) in vec3 aPos;\n" +
-//            "layout (location=1) in vec4 aColor;\n" +
-//            "\n" +
-//            "out vec4 fColor;\n" +
-//            "\n" +
-//            "void main(){\n" +
-//            "    fColor = aColor;\n" +
-//            "    gl_Position = vec4(aPos, 1.0);\n" +
-//            "}";
-//
-//    private String fragmentShaderSrc = "#version 330 core\n" +
-//            "\n" +
-//            "in vec4 fColor;\n" +
-//            "\n" +
-//            "out vec4 color;\n" +
-//            "\n" +
-//            "void main(){\n" +
-//            "    color = fColor;\n" +
-//            "}";
-
-    private int vertexID, fragmentID, shaderProgram;
 
     private float[] vertexArray = {
         //pos                       //color                     //UV coordinates
@@ -59,17 +38,27 @@ public class LevelEditorScene extends Scene{
     private Shader defaultShader;
     private Texture testTexture;
 
+    GameObject testObj;
+    private boolean firstTime = false;
+
     public LevelEditorScene(){
 
     }
 
     @Override
     public void init(){
+
+        System.out.println("Creating test object");
+        this.testObj = new GameObject("test object");
+        this.testObj.addComponent(new SpriteRenderer());
+        this.testObj.addComponent(new FontRenderer());
+        this.addGameObjectToScene(this.testObj);
+
         this.camera = new Camera(new Vector2f(-200, -300));
         defaultShader = new Shader("assets/shaders/a.glsl");
         defaultShader.compile();
         //make sure image has alpha(opacity) of 1
-        this.testTexture = new Texture("assets/images/City-1.png.png"); //images need to be large, like real large//
+        this.testTexture = new Texture("assets/images/2474193.jpg"); //images need to be large, like real large//
 
         vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
@@ -105,8 +94,8 @@ public class LevelEditorScene extends Scene{
     @Override
     public void update(float dt) {
         //move noise box
-        //camera.position.x -= dt * 50.0f;
-        //camera.position.y -= dt * 50.0f;
+//        camera.position.x -= dt * 50.0f;
+//        camera.position.y -= dt * 50.0f;
         //bind shader
         defaultShader.use();
 
@@ -132,6 +121,19 @@ public class LevelEditorScene extends Scene{
         glBindVertexArray(0);
 
         defaultShader.detach();
+
+        if(!firstTime) {
+            System.out.println("Creating game Object!");
+            GameObject go = new GameObject("game test 2");
+            go.addComponent(new SpriteRenderer());
+            this.addGameObjectToScene(go);
+            firstTime = true;
+        }
+
+
+        for (GameObject go : this.gameObjects){
+            go.update(dt);
+        }
 
     }
 
