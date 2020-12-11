@@ -69,7 +69,7 @@ public class LevelEditorScene extends Scene{
         defaultShader = new Shader("assets/shaders/a.glsl");
         defaultShader.compile();
         //make sure image has alpha(opacity) of 1
-        this.testTexture = new Texture("assets/images/2474193.jpg"); //images need to be large, like real large//
+        this.testTexture = new Texture("assets/images/City-1.png.png"); //images need to be large, like real large//
 
         vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
