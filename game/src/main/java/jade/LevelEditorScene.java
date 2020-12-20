@@ -20,10 +20,16 @@ public class LevelEditorScene extends Scene{
 
     private float[] vertexArray = {
         //pos                       //color                     //UV coordinates
-        100f, 0f, 0.0f,          1.0f, 0.0f, 0.0f, 1.0f,        1, 1,//bottom right   0
-        0f, 100f, 0.0f,          0.0f, 1.0f, 0.0f, 1.0f,        0, 0,//Top left       1
-        100f, 100f, 0.0f,        1.0f, 0.0f, 1.0f, 1.0f,        1, 0,//Top right      2
-        0f, 0f, 0.0f,            1.0f, 1.0f, 0.0f, 1.0f,        0, 1//Bottom left     3
+        1080f, -300f, 0.0f,          1.0f, 0.0f, 0.0f, 1.0f,        1, 1,//bottom right   0
+        -200f, 370f, 0.0f,          0.0f, 1.0f, 0.0f, 1.0f,        0, 0,//Top left       1
+        1080f, 370f, 0.0f,        1.0f, 0.0f, 1.0f, 1.0f,        1, 0,//Top right      2
+        -200f, -300f, 0.0f,            1.0f, 1.0f, 0.0f, 1.0f,        0, 1//Bottom left     3
+// Square at bottom left of screen
+//            //pos                       //color                     //UV coordinates
+//            100f, 0f, 0.0f,          1.0f, 0.0f, 0.0f, 1.0f,        1, 1,//bottom right   0
+//            0f, 100f, 0.0f,          0.0f, 1.0f, 0.0f, 1.0f,        0, 0,//Top left       1
+//            100f, 100f, 0.0f,        1.0f, 0.0f, 1.0f, 1.0f,        1, 0,//Top right      2
+//            0f, 0f, 0.0f,            1.0f, 1.0f, 0.0f, 1.0f,        0, 1//Bottom left     3
 
     };
 
@@ -58,7 +64,7 @@ public class LevelEditorScene extends Scene{
         defaultShader = new Shader("assets/shaders/a.glsl");
         defaultShader.compile();
         //make sure image has alpha(opacity) of 1
-        this.testTexture = new Texture("assets/images/2474193.jpg"); //images need to be large, like real large//
+        this.testTexture = new Texture("assets/images/2029165.jpg"); //images need to be large, like real large//
 
         vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
